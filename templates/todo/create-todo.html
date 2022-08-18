@@ -5,5 +5,10 @@
 {% block content %}
 
 <h3>Create</h3>
+<form class="ui form" method="POST" action={% url 'create-todo' %}>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class= "ui button primary" type="submit" value="Submit">
+</form>
 
 {% endblock content %}
