@@ -4,7 +4,36 @@
 
 {% block content %}
 
-<h3>ToDo, details</h3>
+<h1 class="ui header">ToDo, details</h1>
 
+<div class="ui card">
+    <div class="content">
+      <div class="header">{{todo.title}}</div>
+      <div class="meta">{{todo.created_at}}</div>
+      <div class="description">
+        <p>{{todo.description}}</p>
+      </div>
+    </div>
+    <div class="extra content">
+
+        {% if todo.is_completed%}
+      
+      <p>
+      <i class="check icon green"></i>
+  
+      Completed at {{todo.updated_at}}
+      </p>
+
+      {% else %}
+      <p>
+
+        No yet completed
+
+        </p>
+
+        {% endif %}
+     <a href={% url 'todo-edit' todo.pk %} class="ui button primary">Edit</a>
+     <a href={% url 'todo-delete' todo.pk %} class="ui button red">Delete this todo</a>
+    </div>
 
 {% endblock content %}
