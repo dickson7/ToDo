@@ -4,11 +4,61 @@
 
 {% block content %}
 
-<h3>Lista de tareas</h3>
-<ul>
-    <li>Go Home</li>
-    <li>Go Home</li>
-    <li>Go Home</li>
-    <li>Go Home</li>
-</ul>
+<h1 class= "ui headers">Lista de tareas</h1>
+{% if todos %}
+    <table class= "ui table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.description}}</td>
+                    <td>
+                        {% if todo.is_completed %}
+                            YES <i class="check icon green"></i>
+                        {% else %}
+                            NO 
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="" class="ui button">
+                            <i class="eye icon"></i>
+                        </a>
+                        <a href="" class="ui button">
+                            <i class="pencil icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    <a href="?filter=all">All ({{ all_count }})</a>
+                </th>
+                <th>
+                    <a href="?filter=incomplete">({{ incomplete_count}}) Remainig</a>
+                </th>
+                <th>
+                    <a href="?filter=complete">({{ completed_count}}) Completed</a>
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+{% else %}
+    <div class="ui message">
+        <div class="header">
+            No items yet
+        </div>
+        <p>You can create your first ToDo now <a href={% url 'create-todo' %}> Add neww</a></p>
+    </div>
+{% endif %}
 {% endblock content %}
