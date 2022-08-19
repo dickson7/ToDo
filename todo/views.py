@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from todo.forms import TodoForm
 from todo.models import Todo
@@ -18,6 +18,7 @@ def index(request):
                'all_count':all_count
                }
     return render(request, 'todo/index.html', context)
+
 
 def get_showing_todos(request, todos):
     if request.GET and request.GET.get('filter'):
@@ -47,5 +48,38 @@ def create_todo(request):
     
     return render(request, 'todo/create-todo.html', context)
 
+
 def todo_detail(request, id):
-    return render(request, 'todo/todo-detail.html', {})
+    todo = get_object_or_404(Todo, pk=id)
+    context = {'todo': todo}
+    
+    return render(request, 'todo/todo-detail.html', context)
+
+
+def todo_delete(request, id):
+    todo = get_object_or_404(Todo, pk=id)
+    context = {'todo': todo}
+    if request.method == 'POST':
+        todo.delete()
+        return HttpResponseRedirect(reverse('home'))
+    
+    return render(request, 'todo/todo-delete.html', context)
+
+def todo_edit(request, id):
+    todo = get_object_or_404(Todo, pk=id)
+    form = TodoForm(instance=todo)
+    context = {
+        'todo': todo,
+        'form': form,
+        }
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        is_completed = request.POST.get("is_completed", False)
+        todo.title = title
+        todo.description = description
+        todo.is_completed = True if is_completed=='on' else False
+        todo.save()
+        return HttpResponseRedirect(reverse("todo", kwargs={'id':todo.pk}))
+    
+    return render(request, 'todo/todo-edit.html', context)
