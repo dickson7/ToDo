@@ -1,10 +1,14 @@
 {% extends '_partials/base.html' %}
+{% block title %}
+    ToDo: {{ todo.title }}
+{% endblock title %}
 
 {% load static %}
 
 {% block content %}
 
 <h1 class="ui header">ToDo, details</h1>
+{% include  "_partials/messages.html" %}
 
 <div class="ui card">
     <div class="content">

@@ -1,10 +1,14 @@
 {% extends '_partials/base.html' %}
+{% block title %}
+    Home
+{% endblock title %}
 
 {% load static %}
 
 {% block content %}
 
 <h1 class= "ui headers">Lista de tareas</h1>
+{% include  "_partials/messages.html" %}
 {% if todos %}
     <table class= "ui table">
         <thead>
