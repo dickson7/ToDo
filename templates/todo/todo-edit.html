@@ -1,4 +1,8 @@
 {% extends '_partials/base.html' %}
+{% block title %}
+    Edit ToDo: {{ todo.title }}
+{% endblock title %}
+
 
 
 {% block content %}
@@ -7,14 +11,7 @@
   <form class="ui form" method="POST" action={% url 'todo-edit' todo.id %}>
     {% csrf_token %}
     {{form.as_p}}
-    <input class= "ui button primary" type="submit" value="Submit">
+    <input class= "ui button primary" type="submit" value="Save">
 </form>
-
-  {% comment %} <form method="POST"  action={% url 'todo-delete' todo.id %} class="ui form">
-    {% csrf_token %}
-    <p>Are you sure you want to delete this todo?</p>
-    <input type="submit" class="ui button negative" value="YES">
-    <a href={% url 'todo' todo.id %}>Cancel</a>
-  </form> {% endcomment %}
 
 {% endblock content %}
