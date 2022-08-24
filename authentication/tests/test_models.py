@@ -1,5 +1,5 @@
-from utils.setup_test import TestSetup
 from authentication.models import User
+from utils.setup_test import TestSetup
 
 
 class TestModel(TestSetup):

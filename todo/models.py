@@ -3,6 +3,7 @@ from django.db import models
 from authentication.models import User
 from helpers.models import TrackingModels
 
+
 class Todo(TrackingModels):
     title = models.CharField(max_length=255)
     description = models.TextField()

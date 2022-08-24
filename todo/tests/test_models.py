@@ -1,6 +1,6 @@
-from utils.setup_test import TestSetup
 from authentication.models import User
 from todo.models import Todo
+from utils.setup_test import TestSetup
 
 
 class TestModel(TestSetup):

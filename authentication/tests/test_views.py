@@ -1,6 +1,7 @@
-from utils.setup_test import TestSetup
-from django.urls import reverse
 from django.contrib.messages import get_messages
+from django.urls import reverse
+
+from utils.setup_test import TestSetup
 
 
 class TestViews(TestSetup):

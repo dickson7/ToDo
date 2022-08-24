@@ -1,6 +1,7 @@
 from django.test import TestCase
-from authentication.models import User
 from faker import Faker
+
+from authentication.models import User
 
 
 class TestSetup(TestCase):
