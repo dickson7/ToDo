@@ -1,9 +1,9 @@
 from django.contrib import admin
+
 from .models import User
 
 
 class UserAdmin(admin.ModelAdmin):
-
     list_display=('username','email','is_email_verified')
     search_fields =('username','email','is_email_verified')
     list_per_page=25

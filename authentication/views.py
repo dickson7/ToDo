@@ -1,19 +1,22 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from validate_email import validate_email
-from .models import User
-from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse
-from helpers.decorators import auth_user_should_not_access
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str, smart_str, DjangoUnicodeDecodeError
-from .utils import generate_token
-from django.core.mail import EmailMessage
-from django.conf import settings
 import threading
 
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.urls import reverse
+from django.utils.encoding import (DjangoUnicodeDecodeError, force_bytes,
+                                   force_str, smart_str)
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from validate_email import validate_email
+
+from helpers.decorators import auth_user_should_not_access
+
+from .models import User
+from .utils import generate_token
 
 EMAIL_FROM_USER = settings.EMAIL_FROM_USER
 
